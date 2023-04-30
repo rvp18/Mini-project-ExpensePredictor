@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+
+  <script src="{{ url_for('static', filename='jspdf.min.js') }}"></script>
+
+  
+  <script src="{{ url_for('static', filename='home.js') }}"></script>
+  <script src="{{ url_for('static', filename='home_db.js') }}"  type="module"></script>
+  <script src="{{ url_for('static', filename='pg.js') }}"  type="module"></script>
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+
+  
+
+
+  <!-- Include the Bootstrap Datepicker CSS file -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+  <!-- Include the Bootstrap Datepicker JavaScript file -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+ 
+
+  <title>Expenzo</title>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <img src="https://pbs.twimg.com/media/For9uFUaIAEKcy9?format=png&name=small" alt="Logo" id="logo">
+    </div>
+    <div class="nav-right">
+      <button id="add_transaction_btn">Add Transactions</button>
+      <button id="logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div id="sidebar">
+
+      <div class="icon-container " onclick="showTransactions()">
+        <i class="fas fa-exchange-alt"></i>
+        <p>Transactions</p>
+      </div>
+      <div class="icon-container" onclick="showReports()">
+        <i class="fas fa-chart-line"></i>
+        <p>Reports</p>
+      </div>
+      
+      
+      <div class="icon-container " onclick="showpg()">
+        <i class="fa-solid fa-magnifying-glass-chart"></i>
+        <p>Prediction</p>
+        
+      </div>
+      
+
+
+    </div>
+    <div id="main-content">
+      <!-- <div id="account" class="screen">
+
+                <h1>Account</h1>
+            </div> -->
+
+      <div id="transactions" class="screen">
+        <h1>Transactions</h1>
+        <div class="transaction_container">
+          <div class="options">
+            <div class="option" id="option1">Custom</div>
+            <div class="option" id="option2">Last Month</div>
+            <div class="option transaction_active" id="option3">This Month</div>
+            <div class="option" id="option4">Future</div>
+          </div>
+          <div class="custom_transaction_box">
+            <div>
+            <input type="date" id="custom_date">
+            </div>
+            <!-- <span class="loader"></span> -->
+          </div>
+          <div class="last_month_transaction_box">
+            <!-- <span class="loader"></span> -->
+          </div>
+          <div class="this_month_transaction_box">
+          </div>
+          <div class="future_transaction_box">
+            <!-- <span class="loader"></span> -->
+          </div>
+
+          
+            
+        </div>
+
+        
+      </div>
+
+
+
+      <div id="reports" class="screen">
+        <h1>Reports <button id="dwnldbtn" onclick="saveDiv(['summary-report', 'g1', 'g2'],'Report')">
+
+          <i class="fa-solid fa-download"></i> Download your Report PDF
+        </button>
+        </h1>
+
+        <div class="transaction_box_chart" id="g1">
+          <canvas id="transaction_chart"></canvas>
+          
+        </div>
+
+        <div class="transaction_box_chart2" id="g2">
+          <canvas id="pie-chart" style="width: 500px; height: 300px;"></canvas>
+
+        </div>
+
+          <div>
+                  <h1>Expense Summary Report</h1>
+              <div id="summary-report" class="summary-report" > 
+
+                <script src="{{ url_for('static', filename='report.js') }}" type="module" ></script>
+                
+              </div>
+
+
+              
+          </div>
+
+      
+
+      </div>
+
+      <div id="share" class="screen">
+        <h1>Share</h1>
+        <!-- Share Screen Content Here -->
+      </div>
+
+      <div id="pg" class="screen">
+        <h2>Prediction Category-wise for next month</h2>
+        <div class="predicted_expenses_chart_container">
+
+            
+        </div>
+        <div>
+          <h2>Expense Prediction for upcoming 6 Month</h2> 
+          <div class="expense-chart">
+
+            <canvas id="myChart"></canvas>
+
+
+            <!---
+            <h1>My HTML Page</h1>
+              <canvas id="my-canvas" width="400" height="400"></canvas>
+
+              <button onclick="generatePDF()" href="/http://127.0.0.1:5000/download-pdf">Download PDF</button>
+              <script src="https://cdn.jsdelivr.net/npm/html2canvas@0.4.1/dist/html2canvas.min.js"></script>
+              <script>
+                
+              </script>
+            -->
+             
+        </div> 
+        
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+  <!-- The popup form container -->
+  <div class="form-container">
+
+    <form id="transaction_form">
+      <label for="category">Category:</label>
+      <select id="category" name="category" required>
+        <option value="">Select Category</option>
+        <option value="food">Food</option>
+        <option value="transportation">Transportation</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="shopping">Shopping</option>
+      </select>
+
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" name="amount" required pattern="[0-9]+([.,][0-9]{1,2})?" title="Please enter a valid amount (e.g. 10.00 or 10)">
+
+      <br>
+      
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <br>
+
+      <label for="receipt">Receipt:</label>
+      <input type="file" id="receipt" name="receipt" required accept=".jpg, .jpeg, .png, .pdf">
+
+      <label for="note">Note:</label>
+      <input type="text" id="note" name="note">
+
+      <br>
+
+      <button type="submit">Save</button>
+      <button id="transaction_cancel" type="button">Cancel</button>
+    </form>
+
+  </div>
+
+  
+
+
+</body>
+
+
+<script>
+  $('.date').datepicker({
+    format: 'mm/dd/yyyy'
+  });
+</script>
+
+
+
+
+</html>

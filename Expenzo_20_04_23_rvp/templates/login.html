@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <script src="{{ url_for('static', filename='login.js') }}"  type="module"></script>
+
+    <title>Expenzo|Login</title>
+</head>
+
+<body>
+    <img src="https://pbs.twimg.com/media/For9uFUaIAEKcy9?format=png&name=small" alt="" id="logo">
+    
+
+    <form id="signin_form">
+        <div class="signin_container">
+                <!-- Person Icon -->
+            <div class="icon">
+                <i class="fa fa-user"></i>
+            </div>
+
+            <h2>Sign In</h2>
+
+            <!-- Email Input -->
+            <input type="email" id="log_email" class="input-field" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+
+            <!-- Password Input -->
+            <input type="password" id="log_pwd" class="input-field" placeholder="Password"pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+=-])[A-Za-z\d!@#$%^&*()_+=-]{8,}$" title="Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (!@#$%^&*()_+=-)." required>
+
+            <!-- Login Button -->
+            <button class="btn" id="login_btn">Login</button>
+
+            <!-- Sign-up Option -->
+            <div class="signup">
+                Don't have an account? <a href="#" id="signup-link">Sign up</a>
+            </div>
+        </div>
+    </form>
+
+
+    <form id="signup form">
+
+        <!-- Sign up Container -->
+        <div class="signup_container">
+
+            <div class="icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+            
+            <!-- Sign up Title -->
+            <h2>Sign up</h2>
+            
+            <!-- Email Input -->
+            <input type="email" id="signup_email" class="input-field" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+            
+            <!-- Password Input -->
+            <input type="password" id="signup_pwd" class="input-field" placeholder="Password"pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+=-])[A-Za-z\d!@#$%^&*()_+=-]{8,}$" title="Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (!@#$%^&*()_+=-)." required>
+            
+            <!-- Confirm Password Input -->
+            <input type="password" id="signup_pwd_cnf" class="input-field" placeholder="Confirm Password"pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+=-])[A-Za-z\d!@#$%^&*()_+=-]{8,}$" title="Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (!@#$%^&*()_+=-)." required>
+            
+            <!-- Sign up Button -->
+            <button class="btn" id="signup_btn">Sign up</button>
+            <div class="signin">
+                Already have an account? <a href="#" id="signin-link">Sign In</a>
+            </div>
+        </div>
+
+    </form>
+        
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
+  
+</body>
+
+</html>

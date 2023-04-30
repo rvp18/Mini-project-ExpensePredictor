@@ -1,0 +1,130 @@
+body{
+  /* background-color: #0B132B */
+  background: url("https://pbs.twimg.com/media/FpJpt6sakAA-td1?format=jpg&name=4096x4096");
+  /* background: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); */
+  /* background: url("https://pbs.twimg.com/media/FonGm-HWcAIwylD?format=png&name=900x900");
+  background-repeat: no-repeat;
+  background-size: cover; */
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+
+}
+
+#logo{
+  position: relative;
+  width: 300px;
+  height: 300px;
+  padding: 0px;
+  margin-left: -70px;
+  margin-top: -50px;
+}
+
+
+/* Style the container */
+.signin_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 50vh;
+  border-radius: 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 30px #333;
+}
+
+/* Style the person icon */
+.icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #3c91e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.icon i {
+  font-size: 50px;
+  color: #fff;
+}
+
+/* Style the email and password fields */
+.input-field {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background: #e8f0fe;
+}
+
+/* Style the login button */
+.btn {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Style the sign-up option */
+.signup {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.signup a {
+  color: #3c91e6;
+  text-decoration: none;
+}
+
+.signup_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 50vh;
+  border-radius: 20px;
+  background: #FFFFFF;
+}
+
+.signup-container h2 {
+  margin-bottom: 20px;
+}
+
+.signin {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.signin a {
+  color: #3c91e6;
+  text-decoration: none;
+}
+
+
+
+@media (max-width: 768px) {
+  .signup_container {
+    height: 40vh;
+    width: 40vh;
+  }
+}
